@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟商户</title>
+</head>
+<style type="text/css">
+    .input{
+        width: 250px;
+        height: 30px;
+    }
+</style>
+<body>
+
+
+
+<div>
+    <input type="text" name="TxNo" id="TxNo" class="input" placeholder="交易流水号" th:value="${guid}"/>
+</div>
+
+
+<div style="text-align: center">
+    <div>
+        <form id="requestForm" action="/v1/Tx" method="post">
+            <textarea name="plainText" id="requestText" style="height: 500px;width: 800px;font-size: 18px"></textarea>
+            <br/>
+        </form>
+        <input type="button" style="width: 800px;" id="btn" value="提交"/>
+    </div>
+    <hr/>
+    <div>
+        <textarea id="responseText"  style="height: 500px;width: 800px;font-size: 18px"></textarea>
+    </div>
+</div>
+
+</body>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+
+
+
+
+    $("#institutionId").on("input",function () {
+        $("#requestText").text($("#institutionId").val());
+    })
+
+
+    $("#btn").click(function () {
+        var data = $("#requestForm").serialize();
+        $.ajax({
+            type:'post',
+            url: "http://localhost:8001/v1/Tx",
+            cache: false,
+            data: data,
+            dataType:'text',
+            success: function(data){
+                $("#responseText").text(data);
+                console.log("success\n"+data);
+            },
+            error: function(data){
+                console.log("error\n"+data);
+            }
+        })
+    })
+
+
+</script>
+</html>

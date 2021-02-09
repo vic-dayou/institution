@@ -1,0 +1,18 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: institution-simulator
+  thymeleaf:
+    cache: false
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: resources/**,static/**,templates/**
+
+
+config:
+  path:
+    systemPath: /CPCN/Payment/InstitutionSimulator/config/system
+    paymentPath: /CPCN/Payment/InstitutionSimulator/config/payment
