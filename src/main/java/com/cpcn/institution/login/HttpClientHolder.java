@@ -19,8 +19,6 @@ public class HttpClientHolder {
     private static CloseableHttpClient client;
     private static CookieStore cookieStore;
 
-    private Cookie cookie;
-
     public static HttpClient getHttpsClient()  {
         if (null != client) {
             return client;
@@ -39,6 +37,9 @@ public class HttpClientHolder {
 
     }
     public static Cookie getCookie() {
+        if (cookieStore == null) {
+            return null;
+        }
         return cookieStore.getCookies().get(0);
     }
 }

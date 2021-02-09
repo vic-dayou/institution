@@ -22,19 +22,21 @@ import java.util.List;
 public class InstitutionID {
 
     public static void main(String[] args) {
-        getInstitution();
+        getInstitution("312");
     }
 
 
-    public static List<String> getInstitution() {
+    public static List<String> getInstitution(String pageNo) {
+        if (pageNo == null || "".equals(pageNo)) {
+            pageNo = "0";
+        }
         String url = "https://test.cpcn.com.cn/Management/InstitutionInfoNew.do";
         final HttpClient httpsClient = HttpClientHolder.getHttpsClient();
         List<NameValuePair> params = new LinkedList<NameValuePair>();
         List<String> institutionIDs = new LinkedList<String>();
         // 设置参数
         params.add(new BasicNameValuePair("op", "getListForm"));
-
-        params.add(new BasicNameValuePair("pageNo", "312"));
+        params.add(new BasicNameValuePair("pageNo", pageNo));
         // 参数t 随机数 可有可无
         params.add(new BasicNameValuePair("t","0.8702144893057147"));
         HttpPost httpPost = new HttpPost(url);
@@ -50,6 +52,7 @@ public class InstitutionID {
             if (statusCode == 200) {
                 HttpEntity entity = response.getEntity();
                 String respContent = EntityUtils.toString(entity);
+                System.out.println(respContent);
                 final Document document = Jsoup.parse(respContent);
                 final Elements elements = document.select("tr[id$=TrID]");
                 for (Element e : elements) {
