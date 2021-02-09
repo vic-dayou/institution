@@ -10,7 +10,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -20,19 +19,18 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class IndexTest {
+public class InstitutionID {
 
     public static void main(String[] args) {
         getInstitution();
-
     }
 
 
-    public static String getInstitution() {
+    public static List<String> getInstitution() {
         String url = "https://test.cpcn.com.cn/Management/InstitutionInfoNew.do";
         final HttpClient httpsClient = HttpClientHolder.getHttpsClient();
         List<NameValuePair> params = new LinkedList<NameValuePair>();
-
+        List<String> institutionIDs = new LinkedList<String>();
         // 设置参数
         params.add(new BasicNameValuePair("op", "getListForm"));
 
@@ -47,7 +45,6 @@ public class IndexTest {
             httpPost.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36 Edg/88.0.705.63");
             //httpPost.setHeader("Cookie",HttpClientHolder.getCookie().getValue());
             httpPost.setHeader("Cookie", "M_SESSION=2e336be8-4a37-466b-939d-6879bb76c8fb");
-
             HttpResponse response = httpsClient.execute(httpPost);
             int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode == 200) {
@@ -56,13 +53,14 @@ public class IndexTest {
                 final Document document = Jsoup.parse(respContent);
                 final Elements elements = document.select("tr[id$=TrID]");
                 for (Element e : elements) {
-                    final String id = e.attr("id").trim().substring(0,6);
-                    System.out.println(id);
+                    final String institutionID = e.attr("id").trim().substring(0,6);
+                    System.out.println(institutionID);
+                    institutionIDs.add(institutionID);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "s";
+        return institutionIDs;
     }
 }
