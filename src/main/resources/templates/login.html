@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>欢迎使用中金支付统一管理平台</title>
+    <link type="text/css" href="/css/login.css" rel="stylesheet" />
+    <link type="text/css" href="/Boss/JC.RELEASE/jc.all.css" rel="stylesheet" />
+
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="headbar"></div>
+<div id="mainbar">
+    <div class="main">
+        <div id="loginbar">
+            <div id="logo"></div>
+            <div id="loginpanel">
+                <form action="/v1/login" name="loginForm" method="post" id="loginForm">
+                    <input type="hidden" name="fusionUrlHeader" value="aHR0cHM6Ly90ZXN0LmNwY24uY29tLmNu">
+                    <div class='loginpaneldiv'>
+                        <label>
+                            <a class="username"></a>
+                            <input type="text" name="loginID" id="loginID" value="" placeholder="请输入登录账号"/>
+                        </label>
+                    </div>
+                    <div class="loginpaneldiv">
+                        <label>
+                            <a class="password"></a>
+                            <input type="password" name="password" class="jc-password" placeholder="请输入登录密码" autocomplete="off" />
+                        </label>
+                    </div>
+                    <div class="loginpaneldiv">
+                        <label class="part">
+                            <a class="imagecode"></a>
+                            <input type="text" name="imageCode" id="imageCode" placeholder="请输入验证码"/>
+                        </label>
+                        <img src="https://test.cpcn.com.cn/Boss/view/common/Image.jsp" onclick="changeCode();" id="loginCodeImg"></img>
+                        <a href="#" class="change" onclick="changeCode();">换一张</a>
+                    </div>
+                    <div class="errorbar loginpaneldiv">
+                        <span class="error" id="error">用户名或密码输入不正确</span>
+                    </div>
+                    <div class="btnbar loginpaneldiv">
+                        <input type="submit" class="btn" value="登 录"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    Jc().security($("input[name='password']"),{
+        serverRandom:"MjEwMjA5NTYwNDY1OTgxNA=="
+    });
+
+    function doLogin (){
+        var data = $("#loginForm").serialize();
+        $.ajax({
+            type:'post',
+            url: "http://localhost:8001/v1/login",
+            cache: false,
+            data: data,
+            dataType:'text',
+            success: function(data){
+                alert(data)
+                console.log("success\n"+data);
+            },
+            error: function(data){
+                console.log("error\n"+data);
+            }
+        })
+
+
+        /*var loginID = $('#loginID').val();
+        if (loginID == undefined || loginID == '') {
+            showError('请输入登录账号！');
+            return false;
+        }
+
+        var imageCode = $('#imageCode').val();
+        if (imageCode == undefined || imageCode == '') {
+            showError('请输入验证码！');
+            return false;
+        }
+
+        var password;
+        if(Jc().security($("input[name='password']")).getSIPInputValue()){
+            password = Jc().security($("input[name='password']")).getSIPInputValue();
+        }else{
+            password = '';
+        }
+
+        $("input[name='password']").val(Jc().base64.encode(password));*/
+    }
+    function changeCode(){
+        $('#loginCodeImg').attr('src','https://test.cpcn.com.cn/Boss/view/common/Image.jsp?t=' + Math.random());
+    }
+    function showError(error) {
+        if (!error) return;
+        $("#error").html(error).show();
+    }
+
+    $(function(){
+        var error = '没有登录';
+        if(error && error!='null' && error!='undefined') showError(error);
+
+        $("#loginID").focus();
+    });
+
+</script>
+</body>
+</html>

@@ -17,12 +17,18 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
 
 public class InstitutionID {
 
     public static void main(String[] args) {
-        getInstitution("312");
+        //getInstitution("312");
+
+        final String s = UUID.randomUUID().toString();
+        System.out.println(s);
+
+
     }
 
 

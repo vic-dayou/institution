@@ -1,0 +1,39 @@
+@charset "utf-8";body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,input,textarea,p,th,td{margin:0;padding:0}
+
+th{text-align:left}
+img,a img{border:0}
+strong,em,th{font-style:normal;font-weight:normal}
+strong{font-weight:bold}
+li{list-style:none}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:bold;color:#000}
+div,ul,li,span,input,textarea,a,select:focus{outline:none;}
+input,textarea,select{font-family:inherit;font-size:inherit;*font-size:100%;font-weight:inherit}
+html{overflow:auto;margin:0;padding:0;min-width:1200px;}
+body{font:12px Tahoma,Helvetica,Arial,Simsun;font-size:14px;color:#444;margin:0;padding:0;}
+body{font-family:"宋体";background:#f3f3f3;}
+
+html,body{width:100%;height:100%;margin:0;padding:0;min-width:1200px;}
+#headbar{width:100%;height:66px;position:absolute;top:0px;left:0px;background:#462929;min-width:1200px;}
+#mainbar{width:100%;height:100%;float:left;background:url(/images/background.png) bottom center no-repeat;min-width:1200px;}
+.main{width:1000px;height:100%;position:relative;top:0px;left:50%;margin-left:-500px;}
+#loginbar{width:474px;height:422px;position:relative;top:50%;left:533px;margin-top:-180px;background:url(/images/login.png) no-repeat center center;}
+#loginbar #logo{width:400px;margin-left:44px;margin-top:5px;height:60px;background:url(/images/logo.png) no-repeat center center;float:left;}
+#loginbar #loginpanel{width:280px;height:320px;float:left;margin-left:105px;margin-top:-5px;}
+#loginpanel .loginpaneldiv{width:280px;height:40px;float:left;margin-top:15px;}
+#loginpanel .loginpaneldiv label{width:280px;height:38px;float:left;border:1px solid #ddd;background:#fff;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;}
+
+#loginpanel .loginpaneldiv label a{float:left;width:38px;height:32px;margin-top:3px;border-right:1px solid #ddd;}
+#loginpanel .loginpaneldiv label input{float:left;width:220px;height:36px;border:none;margin-left:5px;line-height:30px;font-size:16px;font-family:'微软雅黑';color:#b5b0aa;}
+#loginpanel .username{background:url(/images/username.png) no-repeat center center;}
+#loginpanel .password{background:url(/images/password.png) no-repeat center center;}
+#loginpanel .imagecode{background:url(/images/imagecode.png) no-repeat center center;}
+#loginpanel .loginpaneldiv .part{width:145px;height:38px;float:left;border:1px solid #ddd;background:#fff;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;}
+#loginpanel .loginpaneldiv .part input{float:left;width:100px;height:38px;border:none;margin-left:5px;line-height:30px;font-size:16px;font-family:'微软雅黑';color:#b5b0aa;}
+#loginpanel img{margin-left:15px;width:60px;height:40px;float:left;cursor:pointer;}
+#loginpanel .change{color:#1ab394;font-size:16px;float:left;margin-left:10px;margin-top:22px;}
+
+#loginpanel .errorbar{width:320px;height:30px;float:left;margin-top:0px;}
+#loginpanel .error{display:none;width:100%;height:30px;line-height:30px;background:url(/images/error.png) no-repeat left center;padding-left:20px;color:#d82128;font-size:14px;}
+#loginpanel .btnbar{width:280px;height:44px;float:left;margin-top:10px;}
+#loginpanel .btnbar .btn{color:#fff;font-size:20px;cursor:pointer;font-family:'微软雅黑';width:280px;height:44px;border:none;background:url(/images/login_btn.png) no-repeat center center;}
+

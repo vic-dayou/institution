@@ -1,6 +1,5 @@
 package com.cpcn.institution.login;
 
-import cpcn.institution.tools.util.StringUtil;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -18,15 +17,20 @@ import java.util.List;
 public class Login {
 
     public static void main(String[] args) {
+
+    }
+
+
+    public static String login(String loginID,String password,String verifyCode) {
         String url = "https://test.cpcn.com.cn/Boss/loginaction.do?op=login";
-        final String verifyCode = VerifyCode.getVerifyCode();
+        /*final String verifyCode = VerifyCode.getVerifyCode();
         if (StringUtil.isEmpty(verifyCode) || verifyCode.length() != 4) {
             System.out.println("验证码错误: "+verifyCode);
             return;
-        }
+        }*/
         List<NameValuePair> params = new LinkedList<NameValuePair>();
-        params.add(new BasicNameValuePair("loginID","yuhn"));
-        params.add(new BasicNameValuePair("password","yuhai123A!"));
+        params.add(new BasicNameValuePair("loginID",loginID));
+        params.add(new BasicNameValuePair("password",password));
         params.add(new BasicNameValuePair("fusionUrlHeader","aHR0cHM6Ly90ZXN0LmNwY24uY29tLmNu"));
         params.add(new BasicNameValuePair("imageCode",verifyCode));
 
@@ -54,5 +58,6 @@ public class Login {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return "success";
     }
 }
